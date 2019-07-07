@@ -4,11 +4,12 @@
 <div class="container">
    <div class="row">
     <div class="col-3 p-5">
-        <img src="http://sextuple-u.biz/static/media/floppyWlogo.488dc469.png" style="width: 100%">
+        <img src="{{ $user->profile->profileImage() }}" style="width: 100%" class="w-100">
     </div>
     <div class="col-9">
         <div class="d-flex justify-content-between align-items-baseline">
             <h1>{{ $user->username }}</h1>
+            <a href="#" class="btn btn-primary">Follow</a>
             <a href="/p/create">Add New Post</a>
         </div>
         @can('update', $user->profile)

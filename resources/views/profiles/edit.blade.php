@@ -73,7 +73,7 @@
                 </div>
 
                 <div class="row pt-4">
-                    <button class="btn btn-primary ml-auto">Add New Post</button>
+                    <button class="btn btn-primary ml-auto">Save Profile</button>
                 </div>
             </div>
         </div>
