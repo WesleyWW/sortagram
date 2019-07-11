@@ -10,13 +10,17 @@
         <div class="d-flex justify-content-between align-items-baseline">
             <h1>{{ $user->username }}</h1>
 
-            <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
-
             <a href="/p/create">Add New Post</a>
         </div>
-        @can('update', $user->profile)
-        <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
-        @endcan
+        <div class="d-flex align-items-center py-3">
+            @can('update', $user->profile)
+                <div class="pr-5">
+                    <a href="/profile/{{ $user->id }}/edit">Edit Profile</a>
+                </div>
+            @endcan
+            <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
+        </div>
+        
         <div class="d-flex">
             <div class="pr-5"><strong>{{ $postCount }}</strong> posts</div>
             <div class="pr-5"><strong>{{ $followerCount }}</strong> followers</div>
