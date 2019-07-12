@@ -20,7 +20,7 @@ class PostsController extends Controller
         $posts = Post::whereIn('user_id', $users)->with('user')->latest()->paginate(5);
 
         return view('posts.index', compact('posts'));
-
+ 
     }
 
     public function create()

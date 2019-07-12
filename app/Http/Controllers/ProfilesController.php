@@ -13,6 +13,7 @@ class ProfilesController extends Controller
     public function index(User $user)
     {
         $follows = (auth()->user()) ? auth()->user()->following->contains($user->id) : false;
+        // $routeName = Route::currentRouteName();
 
         $postCount = Cache::remember(
             'count.posts.' . $user->id, 
@@ -67,5 +68,22 @@ class ProfilesController extends Controller
         ));
 
         return redirect("/profile/{$user->id}");
+    }
+
+    public function following(User $user)
+    {
+        $users = $user->following()->pluck('profiles.user_id');
+
+        $usersFollowing = User::whereIn('id', $users)->get();
+
+        return view('profiles.following', compact('usersFollowing'));
+    }
+
+    public function followers(User $user)
+    {
+        $users = $user->profile->followers()->pluck('users.id');
+        $followers = User::whereIn('id', $users)->get();
+
+        return view('profiles.followers', compact('followers'));
     }
 }
